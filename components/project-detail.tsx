@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { X, ChevronLeft, ChevronRight, Lightbulb, AlertTriangle, Wrench, Target, Database, Cpu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import type { Project } from "@/components/project-card"
 import { useTechnicalMode } from "@/components/technical-mode-context"
+import { BlueprintOverlay, type BlueprintHotspot } from "@/components/blueprint-overlay"
 
 interface ProjectDetailData extends Project {
   problemStatement: string
@@ -107,6 +107,21 @@ const deepDiveSpecs: Record<string, Partial<Record<"problem" | "design" | "imple
   },
 }
 
+const detailHotspots: Record<string, BlueprintHotspot[]> = {
+  "1": [
+    { id: "d1", x: 31, y: 39, label: "MOUNTING_BRACKET", value: "Torque: 2.5Nm" },
+    { id: "d2", x: 62, y: 59, label: "DRIVE_CHASSIS", value: "Material: 6061-T6 Aluminum" },
+  ],
+  "2": [
+    { id: "d1", x: 33, y: 46, label: "ACTUATION_LINK", value: "Pinch Force: 22N" },
+    { id: "d2", x: 67, y: 61, label: "TENDON_CHANNEL", value: "Tolerance: +/-0.35mm" },
+  ],
+  "3": [
+    { id: "d1", x: 41, y: 48, label: "MICRO_CHANNELS", value: "Flow: 2.5LPM" },
+    { id: "d2", x: 70, y: 58, label: "THERMAL_FACE", value: "Rth: 0.08 C/W" },
+  ],
+}
+
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const { technicalMode } = useTechnicalMode()
@@ -188,11 +203,12 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
             </svg>
           </div>
 
-          <Image
-            src={gallery[currentImageIndex]}
+          <BlueprintOverlay
+            image={gallery[currentImageIndex]}
             alt={`${project.title} - Image ${currentImageIndex + 1}`}
-            fill
-            className="object-cover"
+            hotspots={detailHotspots[project.id] ?? []}
+            priority={currentImageIndex === 0}
+            loading={currentImageIndex === 0 ? "eager" : "lazy"}
           />
           
           {/* Image overlay data */}

@@ -1,11 +1,12 @@
 "use client"
 
-import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight, Cpu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useTechnicalMode } from "@/components/technical-mode-context"
+import { BlueprintOverlay, type BlueprintHotspot } from "@/components/blueprint-overlay"
+import { TelemetryStream } from "@/components/telemetry-stream"
 
 export interface Project {
   id: string
@@ -20,6 +21,21 @@ interface ProjectCardProps {
   project: Project
   onSelect: (project: Project) => void
   eagerImage?: boolean
+}
+
+const cardHotspots: Record<string, BlueprintHotspot[]> = {
+  "1": [
+    { id: "h1", x: 30, y: 38, label: "DRIVE_STAGE", value: "Torque: 2.5Nm" },
+    { id: "h2", x: 66, y: 58, label: "CHASSIS", value: "Material: 6061-T6 Aluminum" },
+  ],
+  "2": [
+    { id: "h1", x: 35, y: 44, label: "TENDON_ROUTE", value: "Dyneema SK75, preload 6N" },
+    { id: "h2", x: 63, y: 56, label: "MCP_HINGE", value: "FoS: 2.6 @ 31MPa" },
+  ],
+  "3": [
+    { id: "h1", x: 39, y: 47, label: "COLD_PLATE", value: "Rth: 0.08 C/W" },
+    { id: "h2", x: 69, y: 62, label: "FLOW_MANIFOLD", value: "Setpoint: 2.5 LPM" },
+  ],
 }
 
 export function ProjectCard({ project, onSelect, eagerImage = false }: ProjectCardProps) {
@@ -62,17 +78,15 @@ export function ProjectCard({ project, onSelect, eagerImage = false }: ProjectCa
       </div>
 
       <div className="relative aspect-[4/3] overflow-hidden bg-[#233348]">
-        <Image
-          src={project.image}
+        <BlueprintOverlay
+          image={project.image}
           alt={project.title}
-          fill
+          hotspots={cardHotspots[project.id] ?? []}
           priority={eagerImage}
           loading={eagerImage ? "eager" : "lazy"}
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          className="transition-transform duration-500 group-hover:scale-105"
         />
-        {/* Scan line overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-sky-400/0 via-sky-400/5 to-sky-400/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        {/* Grid overlay */}
         <div 
           className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-30"
           style={{
@@ -114,6 +128,8 @@ export function ProjectCard({ project, onSelect, eagerImage = false }: ProjectCa
             {displayedSummary}
           </motion.p>
         </AnimatePresence>
+
+        {project.id === "1" ? <TelemetryStream /> : null}
 
         {/* Divider line */}
         <div className="my-4 flex items-center gap-2">
