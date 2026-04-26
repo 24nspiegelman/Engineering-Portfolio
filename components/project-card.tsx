@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useTechnicalMode } from "@/components/technical-mode-context"
 import { BlueprintOverlay, type BlueprintHotspot } from "@/components/blueprint-overlay"
-import { TelemetryStream } from "@/components/telemetry-stream"
 
 export interface Project {
   id: string
@@ -128,8 +127,6 @@ export function ProjectCard({ project, onSelect, eagerImage = false }: ProjectCa
             {displayedSummary}
           </motion.p>
         </AnimatePresence>
-
-        {project.id === "1" ? <TelemetryStream /> : null}
 
         {/* Divider line */}
         <div className="my-4 flex items-center gap-2">

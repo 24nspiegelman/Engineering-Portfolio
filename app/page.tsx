@@ -9,7 +9,6 @@ import { AboutSection } from "@/components/about-section"
 import { Footer } from "@/components/footer"
 import { Model3DViewer } from "@/components/3d-model-viewer"
 import { SimulationCanvas } from "@/components/simulation-canvas"
-import { KinematicsPlayground } from "@/components/kinematics-playground"
 import { TechnicalModeProvider } from "@/components/technical-mode-context"
 import type { Project } from "@/components/project-card"
 
@@ -53,10 +52,9 @@ export default function HomePage() {
         <HeroSection />
 
         <section className="px-6 py-16">
-          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
             <Model3DViewer />
             <SimulationCanvas />
-            <KinematicsPlayground />
           </div>
         </section>
 
