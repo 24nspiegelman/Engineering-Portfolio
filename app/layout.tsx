@@ -24,23 +24,14 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   title: 'Noah | Mechanical Engineering Portfolio',
   description: 'Mechanical Engineering student specializing in robotics, CAD design, and computational analysis. View my technical projects and case studies.',
-  generator: 'v0.app',
+  metadataBase: new URL('https://24nspiegelman.github.io'),
   icons: {
     icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
       {
         url: '/icon.svg',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
   },
 }
 

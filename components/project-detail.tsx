@@ -30,9 +30,9 @@ const projectDetails: Record<string, Omit<ProjectDetailData, keyof Project>> = {
     implementation: "The robot was fabricated using a combination of 3D-printed PLA components and laser-cut aluminum brackets. ROS2 was used for the software stack, implementing SLAM for mapping and A* pathfinding for navigation. The embedded system runs on a Raspberry Pi 4 with real-time sensor processing on an Arduino Mega.",
     lessonsLearned: "Initial motor selection underestimated torque requirements, leading to wheel slippage on inclines. This was resolved by upgrading to planetary gear motors. Additionally, sensor noise from the IMU required implementing a complementary filter, which significantly improved pose estimation accuracy.",
     gallery: [
-      "/images/project-1-1.jpg",
-      "/images/project-1-2.jpg",
-      "/images/project-1-3.jpg",
+      "/images/project-1-1.svg",
+      "/images/project-1-2.svg",
+      "/images/project-1-3.svg",
     ],
     codeSnippet: `# A* Pathfinding Implementation
 def a_star(start, goal, grid):
@@ -62,9 +62,9 @@ def a_star(start, goal, grid):
     implementation: "All structural components were printed in PETG for durability and chemical resistance. Dyneema fishing line serves as artificial tendons, routed through PTFE tubing for low-friction operation. Control is achieved via an Arduino Nano with myoelectric sensors detecting forearm muscle signals.",
     lessonsLearned: "The initial tendon routing caused significant friction losses, reducing grip strength by 60%. Redesigning the pulley system with ball bearings and optimizing tendon paths recovered most of the lost efficiency. Future iterations should consider cable-driven mechanisms with Bowden tubes.",
     gallery: [
-      "/images/project-2-1.jpg",
-      "/images/project-2-2.jpg",
-      "/images/project-2-3.jpg",
+      "/images/project-2-1.svg",
+      "/images/project-2-2.svg",
+      "/images/project-2-3.svg",
     ],
   },
   "3": {
@@ -73,9 +73,9 @@ def a_star(start, goal, grid):
     implementation: "The cold plate was CNC machined from C110 copper with nickel plating for corrosion resistance. A custom pump selection based on system curve analysis ensures optimal flow rate of 2.5 LPM. The radiator utilizes a cross-flow design with louvered fins for enhanced air-side heat transfer.",
     lessonsLearned: "Initial testing revealed flow maldistribution in the parallel micro-channels, causing hot spots. Adding a jet impingement inlet plenum improved flow uniformity. Pump cavitation at high temperatures was mitigated by pressurizing the loop with an expansion tank.",
     gallery: [
-      "/images/project-3-1.jpg",
-      "/images/project-3-2.jpg",
-      "/images/project-3-3.jpg",
+      "/images/project-3-1.svg",
+      "/images/project-3-2.svg",
+      "/images/project-3-3.svg",
     ],
   },
 }

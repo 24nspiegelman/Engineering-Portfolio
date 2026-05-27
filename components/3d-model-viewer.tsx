@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber"
 import { OrbitControls, useGLTF } from "@react-three/drei"
 import { Mesh, type Group, type MeshStandardMaterial } from "three"
 import { Box, RotateCcw, ScanLine } from "lucide-react"
+import { withBasePath } from "@/lib/site"
 
 function ProstheticModel({
   modelPath,
@@ -48,7 +49,11 @@ function ModelFallback({ wireframe }: { wireframe: boolean }) {
   )
 }
 
-export function Model3DViewer({ modelPath = "/models/prosthetic-hand.glb" }: { modelPath?: string }) {
+export function Model3DViewer({
+  modelPath = withBasePath("/models/prosthetic-hand.glb"),
+}: {
+  modelPath?: string
+}) {
   const [wireframe, setWireframe] = useState(false)
   const [autoRotate, setAutoRotate] = useState(true)
   const [modelAvailable, setModelAvailable] = useState<boolean | null>(null)
